@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
   database: deploy_render_rails_devise_production
   username: deploy_render_rails_devise
   password: <%= ENV["DEPLOY_RENDER_RAILS_DEVISE_DATABASE_PASSWORD"] %>

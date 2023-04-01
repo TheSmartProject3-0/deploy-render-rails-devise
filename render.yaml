@@ -1,0 +1,20 @@
+databases:
+  - name: deploy_render_rails_devise
+    databaseName: deploy_render_rails_devise
+    user: deploy_render_rails_devise
+    plan: free
+
+services:
+  - type: web
+    name: deploy_render_rails_devise
+    env: ruby
+    plan: free
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: deploy_render_rails_devise
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
